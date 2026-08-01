@@ -7,6 +7,7 @@ import { ShopPage } from './pages/ShopPage'
 import { CartProvider } from './context/CartContext'
 import { CartPage } from './pages/CartPage'
 import { CheckoutPage } from './pages/CheckoutPage'
+import { OrderLookupPage } from './pages/OrderLookupPage'
 
 function App() {
   return (
@@ -41,6 +42,11 @@ function App() {
           <Route
             path="/order-success/:orderNumber"
             element={<OrderSuccessPage />}
+          />
+
+          <Route
+            path="/order-lookup"
+            element={<OrderLookupPage />}
           />
 
         </Routes>
