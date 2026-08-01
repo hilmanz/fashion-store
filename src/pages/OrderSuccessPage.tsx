@@ -22,6 +22,9 @@ type Payment = {
 }
 
 type OrderItem = {
+  id: string
+  product_id: string
+  variant_id: string | null
   product_name: string
   sku: string | null
   size: string | null

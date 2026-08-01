@@ -153,16 +153,9 @@ export function CheckoutPage() {
       navigate(
         `/order-success/${data.order_number}`
       )
-    } catch (error) {
-      console.error(
-        'Payment error:',
-        error
-      )
-
+    } catch {
       setPaymentError(
-        error instanceof Error
-          ? error.message
-          : 'Something went wrong while processing your order.'
+        'We couldn’t complete your order right now. Please try again.'
       )
     } finally {
       setIsProcessing(false)
@@ -494,8 +487,8 @@ export function CheckoutPage() {
                 <button
                   type="button"
                   onClick={handlePayment}
-                  disabled={isProcessing}
-                  className="mt-8 w-full bg-black px-6 py-4 text-xs font-medium uppercase tracking-[0.15em] text-white transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
+                  disabled={isProcessing || items.length === 0}
+                  className="mt-8 w-full bg-black px-6 py-4 text-xs font-medium uppercase tracking-[0.15em] text-white transition-opacity hover:opacity-80 disabled:cursor-wait disabled:opacity-50"
                 >
                   {isProcessing
                     ? 'Processing...'
@@ -578,13 +571,15 @@ export function CheckoutPage() {
               </span>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setShowPayment(true)}
-              className="mt-8 w-full bg-black px-6 py-4 text-xs font-medium uppercase tracking-[0.15em] text-white transition-opacity hover:opacity-80"
-            >
-              Continue to payment
-            </button>
+            {!showPayment && (
+              <button
+                type="button"
+                onClick={() => setShowPayment(true)}
+                className="mt-8 w-full bg-black px-6 py-4 text-xs font-medium uppercase tracking-[0.15em] text-white transition-opacity hover:opacity-80"
+              >
+                Continue to payment
+              </button>
+            )}
           </aside>
         </div>
       </main>
