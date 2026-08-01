@@ -8,6 +8,7 @@ import { CartProvider } from './context/CartContext'
 import { CartPage } from './pages/CartPage'
 import { CheckoutPage } from './pages/CheckoutPage'
 import { OrderLookupPage } from './pages/OrderLookupPage'
+import { OrderHistoryPage } from './pages/OrderHistoryPage'
 
 function App() {
   return (
@@ -37,6 +38,11 @@ function App() {
           <Route
             path="/checkout"
             element={<CheckoutPage />}
+          />
+
+          <Route
+            path="/orders"
+            element={<OrderHistoryPage />}
           />
 
           <Route
